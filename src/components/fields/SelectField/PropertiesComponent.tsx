@@ -4,7 +4,6 @@ import { FieldInstance, FormElementInstance } from '@/types/form';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Separator } from '@/components/ui/separator';
-import { Switch } from '@/components/ui/switch';
 import { useDesignerActions } from '@/hooks/use-designer';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Plus, X } from 'lucide-react';
@@ -20,6 +19,7 @@ import {
     FieldLabel,
     FieldSeparator,
 } from '@/components/ui/field';
+import { SwitchCard } from '@/components/shared/SwitchCard';
 
 // Helper function to check for duplicate options
 function hasDuplicateOptions(options: string[]): boolean {
@@ -128,6 +128,7 @@ export default function PropertiesComponent({
                         </Field>
                     )}
                 />
+
                 {/* Placeholder */}
                 <Controller
                     control={form.control}
@@ -151,6 +152,7 @@ export default function PropertiesComponent({
                         </Field>
                     )}
                 />
+
                 {/* Helper Text */}
                 <Controller
                     control={form.control}
@@ -175,7 +177,9 @@ export default function PropertiesComponent({
                         </Field>
                     )}
                 />
+
                 <FieldSeparator />
+
                 {/* Options */}
                 <Controller
                     control={form.control}
@@ -248,22 +252,12 @@ export default function PropertiesComponent({
                     control={form.control}
                     name="required"
                     render={({ field }) => (
-                        <Field
-                            orientation="horizontal"
-                            className="flex items-center justify-between rounded-lg border p-4 shadow-sm"
-                        >
-                            <div className="space-y-1">
-                                <FieldLabel htmlFor="sf-required">Required</FieldLabel>
-                                <FieldDescription>
-                                    Marks this field as mandatory
-                                </FieldDescription>
-                            </div>
-                            <Switch
-                                id="sf-required"
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                            />
-                        </Field>
+                        <SwitchCard
+                            title="Required"
+                            description="Marks this field as mandatory"
+                            checked={!!field.value}
+                            onCheckedChange={field.onChange}
+                        />
                     )}
                 />
             </FieldGroup>

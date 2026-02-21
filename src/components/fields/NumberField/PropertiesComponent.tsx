@@ -2,7 +2,6 @@
 
 import { FieldInstance, FormElementInstance } from '@/types/form';
 import { Input } from '@/components/ui/input';
-import { Switch } from '@/components/ui/switch';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
@@ -15,6 +14,7 @@ import {
     FieldGroup,
     FieldLabel,
 } from '@/components/ui/field';
+import { SwitchCard } from '@/components/shared/SwitchCard';
 
 export default function PropertiesComponent({
     elementInstance,
@@ -137,22 +137,12 @@ export default function PropertiesComponent({
                     control={form.control}
                     name="required"
                     render={({ field }) => (
-                        <Field
-                            orientation="horizontal"
-                            className="flex items-center justify-between rounded-lg border p-4 shadow-sm"
-                        >
-                            <div className="space-y-1">
-                                <FieldLabel htmlFor="nf-required">Required</FieldLabel>
-                                <FieldDescription>
-                                    Marks this field as mandatory
-                                </FieldDescription>
-                            </div>
-                            <Switch
-                                id="nf-required"
-                                checked={field.value}
-                                onCheckedChange={field.onChange}
-                            />
-                        </Field>
+                        <SwitchCard
+                            title="Required"
+                            description="Marks this field as mandatory"
+                            checked={!!field.value}
+                            onCheckedChange={field.onChange}
+                        />
                     )}
                 />
             </FieldGroup>
