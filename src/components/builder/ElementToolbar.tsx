@@ -22,7 +22,7 @@ export default function ElementToolbar({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: -5 }}
             transition={{ duration: 0.15 }}
-            className="bg-background/95 absolute -top-4 right-0 z-20 flex gap-2 rounded-md border px-2 py-1 shadow-sm"
+            className="bg-background absolute -top-4 right-0 z-20 flex gap-2 rounded-md border px-2 py-1 shadow-sm"
         >
             {/* Up */}
             <Button
@@ -43,6 +43,8 @@ export default function ElementToolbar({
             >
                 <ArrowDown className="size-4" />
             </Button>
+
+            {/* Edit */}
             <Button
                 size="icon"
                 variant="ghost"
@@ -52,6 +54,7 @@ export default function ElementToolbar({
                 <SquarePen className="size-4" />
             </Button>
 
+            {/* Delete */}
             <Button
                 size="icon"
                 variant="ghost"

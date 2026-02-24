@@ -1,6 +1,6 @@
 'use client';
 
-import { LoaderCircle } from 'lucide-react';
+import { Globe, LoaderCircle } from 'lucide-react';
 import { Button } from '../ui/button';
 import { useTransition } from 'react';
 import {
@@ -16,18 +16,22 @@ import {
 } from '../ui/alert-dialog';
 import { toast } from 'sonner';
 import { useRouter } from 'next/navigation';
-// old import removed; use server action wrapper instead
 import { useDesignerElements } from '@/hooks/use-designer';
 import { publishFormByIdAction } from '@/actions/form';
+import { DropdownMenuItem } from '../ui/dropdown-menu';
 
-export default function PublishFormBtn({ id }: { id: string }) {
+type PublishFormProps = {
+    formId: string;
+    variant?: 'button' | 'menu-item';
+};
+export default function PublishForm({ formId, variant = 'button' }: PublishFormProps) {
     const elements = useDesignerElements();
     const [isPending, startTransition] = useTransition();
     const { refresh } = useRouter();
 
     const isFormEmpty = !elements || elements.length === 0;
 
-    async function publishForm() {
+    async function handlePublishForm() {
         try {
             if (isFormEmpty) {
                 toast.error('Cannot publish empty form', {
@@ -43,7 +47,7 @@ export default function PublishFormBtn({ id }: { id: string }) {
                 });
                 return;
             }
-            await publishFormByIdAction(id);
+            await publishFormByIdAction(formId);
             toast.success('Published!', {
                 description: 'Your form is now available to the public.',
                 style: {
@@ -73,16 +77,23 @@ export default function PublishFormBtn({ id }: { id: string }) {
     return (
         <AlertDialog>
             <AlertDialogTrigger asChild>
-                <Button
-                    disabled={isPending || isFormEmpty}
-                    className="cursor-pointer text-xs sm:text-sm"
-                >
-                    {isPending ? (
-                        <LoaderCircle className="size-4 animate-spin" />
-                    ) : (
-                        'Publish'
-                    )}
-                </Button>
+                {variant === 'button' ? (
+                    <Button
+                        disabled={isPending || isFormEmpty}
+                        className="w-24 cursor-pointer rounded-none text-xs sm:text-sm"
+                    >
+                        {isPending ? (
+                            <LoaderCircle className="size-4 animate-spin" />
+                        ) : (
+                            'Publish'
+                        )}
+                    </Button>
+                ) : (
+                    <DropdownMenuItem onSelect={handlePublishForm} disabled={isFormEmpty}>
+                        <Globe />
+                        Publish
+                    </DropdownMenuItem>
+                )}
             </AlertDialogTrigger>
             <AlertDialogContent>
                 <AlertDialogHeader>
@@ -105,7 +116,7 @@ export default function PublishFormBtn({ id }: { id: string }) {
                     <AlertDialogAction
                         disabled={isPending || isFormEmpty}
                         onClick={() => {
-                            startTransition(publishForm);
+                            startTransition(handlePublishForm);
                         }}
                     >
                         {isPending ? (

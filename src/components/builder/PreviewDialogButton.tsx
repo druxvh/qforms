@@ -5,13 +5,14 @@ import { Button } from '../ui/button';
 import {
     Dialog,
     DialogContent,
+    DialogDescription,
     DialogHeader,
     DialogTitle,
     DialogTrigger,
 } from '../ui/dialog';
 import { FormElements } from '@/types/form';
 
-export default function PreviewDialogBtn() {
+export default function PreviewDialogButton() {
     const elements = useDesignerElements();
 
     return (
@@ -19,8 +20,7 @@ export default function PreviewDialogBtn() {
             <DialogTrigger asChild>
                 <Button
                     disabled={elements.length === 0 || !elements}
-                    variant={'outline'}
-                    className="cursor-pointer text-xs sm:text-sm"
+                    className="w-24 cursor-pointer rounded-none text-xs sm:text-sm"
                 >
                     Preview
                 </Button>
@@ -38,6 +38,7 @@ export default function PreviewDialogBtn() {
                         </div>
                     </DialogTitle>
                 </DialogHeader>
+                <DialogDescription hidden aria-hidden />
                 <div className="mx-auto flex h-full w-full max-w-2xl grow flex-col gap-4 overflow-y-auto px-4 py-8">
                     {elements.map((element) => {
                         const FormComponent = FormElements[element.type].formComponent;
@@ -52,7 +53,6 @@ export default function PreviewDialogBtn() {
                         </Button>
                     </div>
                 </div>
-                {/* </div> */}
             </DialogContent>
         </Dialog>
     );
