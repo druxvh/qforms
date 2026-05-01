@@ -2,28 +2,27 @@
 
 import { Button } from '@/components/ui/button';
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip';
-import { FormElements } from '@/types/form';
-import { BrainCog, Grid2x2Plus, ListPlus, Palette, Settings } from 'lucide-react';
-import { SidebarFieldElement } from './FormElements';
+import { BrainCog, ListPlus } from 'lucide-react';
 import { useState } from 'react';
+import AISidebar from './AISidebar';
+import FieldSidebar from './FieldSidebar';
 
-type SidebarItem = 'AI' | 'Fields' | 'Layout' | 'Themes' | 'Setting';
+// type SidebarItem = 'AI' | 'Fields' | 'Style' | 'Setting';
+type SidebarItem = 'AI' | 'Fields';
 
 const menubarItems = [
     { id: 1, icon: BrainCog, name: 'AI' },
     { id: 2, icon: ListPlus, name: 'Fields' },
-    { id: 3, icon: Grid2x2Plus, name: 'Layout' },
-    { id: 4, icon: Palette, name: 'Themes' },
-    { id: 5, icon: Settings, name: 'Setting' },
+    // { id: 3, icon: Palette, name: 'Style' },
+    // { id: 4, icon: Settings, name: 'Setting' },
 ];
 
 export default function Sidebar() {
-    // add state for fields and other sidebar btns
     const [activeSidebarItem, setActiveSidebarItem] = useState<SidebarItem>('Fields');
 
     return (
         <div className="hidden border-r sm:flex">
-            {/* 1. Mini Sidebar (Fixed) */}
+            {/* 1. Mini Sidebar */}
             <div className="flex w-14 shrink-0 flex-col items-center gap-4 py-4">
                 {menubarItems.map((item) => {
                     const Icon = item.icon;
@@ -66,50 +65,46 @@ export default function Sidebar() {
                 })}
             </div>
 
-            {/* 2. Sidebar w/ Fields (Scrollable) */}
+            {/* 2. Sidebar w/ Fields */}
             <div className="flex h-full w-full max-w-sm min-w-xs flex-col">
                 <div className="flex-1 overflow-y-auto p-4">
                     {/* Fields */}
-                    {activeSidebarItem === 'Fields' && (
-                        <div>
-                            <p className="font-semibold">Fields</p>
-                            <div className="flex flex-col gap-2 py-4">
-                                {Object.values(FormElements).map((formElement, idx) => (
-                                    <SidebarFieldElement
-                                        key={idx}
-                                        formElement={formElement}
-                                    />
-                                ))}
-                            </div>
-                        </div>
-                    )}
-                    {/* Layout */}
-                    {activeSidebarItem === 'Layout' && (
-                        <div className="flex flex-col gap-2 py-4">
-                            <p className="font-semibold">Layout options coming soon!</p>
-                        </div>
-                    )}
-
-                    {/* Themes */}
-                    {activeSidebarItem === 'Themes' && (
-                        <div className="flex flex-col gap-2 py-4">
-                            <p className="font-semibold">Themes options coming soon!</p>
-                        </div>
-                    )}
-
-                    {/* Settings */}
-                    {activeSidebarItem === 'Setting' && (
-                        <div className="flex flex-col gap-2 py-4">
-                            <p className="font-semibold">Settings options coming soon!</p>
-                        </div>
-                    )}
+                    {activeSidebarItem === 'Fields' && <FieldSidebar />}
 
                     {/* AI */}
-                    {activeSidebarItem === 'AI' && (
-                        <div className="flex flex-col gap-2 py-4">
-                            <p className="font-semibold">AI features coming soon!</p>
+                    {activeSidebarItem === 'AI' && <AISidebar />}
+
+                    {/* Style */}
+                    {/* {activeSidebarItem === 'Style' && (
+                        <div className="h-full space-y-4">
+                            <h2 className="font-semibold">Style</h2>
+                            <Tabs defaultValue="themes" className="w-full">
+                                <TabsList className="h-fit w-full bg-gray-300">
+                                    <TabsTrigger value="themes" className="">
+                                        Themes
+                                    </TabsTrigger>
+                                    <TabsTrigger value="custom">Custom</TabsTrigger>
+                                </TabsList>
+                                <TabsContent value="themes" className="h-full">
+                                    <div className="flex flex-col gap-2">
+                                        themes coming soon!
+                                    </div>
+                                </TabsContent>
+                                <TabsContent value="custom">
+                                    <FormSidebar />
+                                </TabsContent>
+                            </Tabs>
                         </div>
-                    )}
+                    )} */}
+
+                    {/* Settings */}
+                    {/* {activeSidebarItem === 'Setting' && (
+                        <div className="h-full">
+                            <h2 className="font-semibold">
+                                Settings options coming soon!
+                            </h2>
+                        </div>
+                    )} */}
                 </div>
             </div>
         </div>

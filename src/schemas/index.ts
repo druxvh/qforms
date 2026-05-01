@@ -1,3 +1,10 @@
+// Export all schemas 
+export * from './field-schemas';
+export * from './builder-schema'
+export * from './create-form-schema';
+export * from './onboarding-schema';
+
+// Field Schemas Import (for registry)
 import {
     checkboxFieldSchema,
     dateFieldSchema,
@@ -12,21 +19,7 @@ import {
     titleFieldSchema,
 } from './field-schemas';
 
-// Exports
-export type {
-    TextFieldSchemaT,
-    NumberFieldSchemaT,
-    TextAreaFieldSchemaT,
-    DateFieldSchemaT,
-    SelectFieldSchemaT,
-    CheckboxFieldSchemaT,
-    TitleFieldSchemaT,
-    SubTitleFieldSchemaT,
-    ParagraphFieldSchemaT,
-    SpacerFieldSchemaT,
-    SeparatorFieldSchemaT,
-} from './field-schemas';
-
+// Field Schema Registry
 export const fieldSchemas = {
     TextField: textFieldSchema,
     NumberField: numberFieldSchema,
@@ -40,21 +33,3 @@ export const fieldSchemas = {
     SpacerField: spacerFieldSchema,
     SeparatorField: separatorFieldSchema,
 } as const;
-
-export {
-    checkboxFieldSchema,
-    dateFieldSchema,
-    numberFieldSchema,
-    paragraphFieldSchema,
-    selectFieldSchema,
-    separatorFieldSchema,
-    spacerFieldSchema,
-    subTitleFieldSchema,
-    textAreaFieldSchema,
-    textFieldSchema,
-    titleFieldSchema,
-} from './field-schemas';
-
-export { createFormSchema, type createFormSchemaT } from './create-form-schema';
-
-export { onboardFormSchema, type onboardFormSchemaT } from './onboarding-schema';

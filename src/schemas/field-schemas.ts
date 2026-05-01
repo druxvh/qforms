@@ -11,7 +11,7 @@ export const textFieldSchema = z.object({
         .max(200, 'Helper text cannot exceed 200 characters')
         .optional(),
     required: z.boolean().default(false),
-    placeholder: z.string().max(50, 'Placeholder cannot exceed 50 characters').optional(),
+    placeholder: z.string().max(200, 'Placeholder cannot exceed 200 characters').optional(),
 });
 
 // Number Field
@@ -25,7 +25,7 @@ export const numberFieldSchema = z.object({
         .max(200, 'Helper text cannot exceed 200 characters')
         .optional(),
     required: z.boolean().default(false),
-    placeholder: z.string().max(50, 'Placeholder cannot exceed 50 characters').optional(),
+    placeholder: z.string().max(200, 'Placeholder cannot exceed 200 characters').optional(),
 });
 
 // Text Area Field
@@ -39,7 +39,7 @@ export const textAreaFieldSchema = z.object({
         .max(200, 'Helper text cannot exceed 200 characters')
         .optional(),
     required: z.boolean().default(false),
-    placeholder: z.string().max(50, 'Placeholder cannot exceed 50 characters').optional(),
+    placeholder: z.string().max(200, 'Placeholder cannot exceed 200 characters').optional(),
     rows: z
         .number()
         .min(1, 'Must have at least 1 row')
@@ -71,7 +71,7 @@ export const selectFieldSchema = z.object({
         .max(200, 'Helper text cannot exceed 200 characters')
         .optional(),
     required: z.boolean().default(false),
-    placeholder: z.string().max(50, 'Placeholder cannot exceed 50 characters').optional(),
+    placeholder: z.string().max(200, 'Placeholder cannot exceed 200 characters').optional(),
     options: z
         .array(z.string())
         .min(1, 'At least one option is required')
