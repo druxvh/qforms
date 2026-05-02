@@ -38,7 +38,7 @@ export default function FormFields() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.3 }}
                     className="mb-16 text-center"
                 >
                     <h2 className="mb-4 text-4xl font-bold md:text-5xl">
@@ -60,8 +60,8 @@ export default function FormFields() {
                             initial={{ opacity: 0, scale: 0.9 }}
                             whileInView={{ opacity: 1, scale: 1 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.2, delay: 0.03 }}
-                            whileHover={{ y: -4, scale: 1.08 }}
+                            transition={{ duration: 0.1 }}
+                            whileHover={{ y: -4, scale: 1.05 }}
                             className="border-border/50 bg-card/50 hover:bg-accent hover:border-foreground/20 group cursor-pointer rounded-lg border p-6 backdrop-blur-sm transition-all duration-300 hover:shadow-lg"
                         >
                             <motion.div

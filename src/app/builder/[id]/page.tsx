@@ -23,7 +23,9 @@ export default async function BuilderPage({ params }: BuilderPageProps) {
 
     // If the form is published, show the share URL and confetti celebration
     if (form.published) {
-        const shareUrl = `${window.location.origin}/submit/${form.shareURL}`;
+        const appUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3000';
+
+        const shareUrl = `${appUrl}/submit/${form.shareURL}`;
 
         return <PublishedFormView shareUrl={shareUrl} formId={form.id} />;
     }

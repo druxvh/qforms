@@ -1,6 +1,6 @@
 'use client';
 
-import { BarChart3, Zap, GripVertical, Boxes } from 'lucide-react';
+import { BarChart3, Zap, Boxes, MousePointerClick } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { motion } from 'framer-motion';
 
@@ -12,10 +12,10 @@ const features = [
             'Build professional forms in minutes with our intuitive interface. No learning curve required.',
     },
     {
-        icon: GripVertical,
-        title: 'Drag & Drop',
+        icon: MousePointerClick,
+        title: 'One-Click Builder',
         description:
-            'Effortlessly arrange form fields by dragging and dropping. Perfect organization, every time.',
+            'Add fields instantly with a single click and organize them effortlessly for a faster, smoother form-building experience.',
     },
     {
         icon: BarChart3,
@@ -39,7 +39,7 @@ export default function Features() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 0.5 }}
+                    transition={{ duration: 0.325 }}
                     className="mb-16 text-center"
                 >
                     <h2 className="mb-4 text-4xl font-bold md:text-5xl">
@@ -58,7 +58,7 @@ export default function Features() {
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.4, delay: index * 0.1 }}
+                            transition={{ duration: 0.325 }}
                             whileHover={{ y: -8, scale: 1.02 }}
                         >
                             <Card className="border-border/50 hover:border-foreground/20 group bg-card/50 h-full backdrop-blur-sm transition-all duration-300 hover:shadow-xl">

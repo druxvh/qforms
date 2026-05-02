@@ -1,11 +1,13 @@
+import { arrayMove } from '@/lib/arrayMove';
 import { FormElementInstance } from '@/types/form';
-import { arrayMove } from '@dnd-kit/sortable';
+import { defaultFormStyle, FormStyle } from '@/types/form-style';
 import { create } from 'zustand';
 
 type DesignerState = {
     elements: FormElementInstance[];
     selectedElement: FormElementInstance | null;
     activeElementId: string | null;
+    style: FormStyle
 };
 
 type DesignerActions = {
@@ -15,6 +17,8 @@ type DesignerActions = {
     setElements: (elements: FormElementInstance[]) => void;
     setSelectedElement: (element: FormElementInstance | null) => void;
     setActiveElementId: (id: string | null) => void;
+
+    updateStyle: (style: Partial<FormStyle>) => void;
 
     moveElementUp: (id: string) => void;
     moveElementDown: (id: string) => void;
@@ -29,6 +33,7 @@ export const useDesignerStore = create<DesignerStore>()((set) => ({
     elements: [],
     selectedElement: null,
     activeElementId: null,
+    style: defaultFormStyle,
 
     // Actions
     setElements: (elements) => set({ elements }),
@@ -55,6 +60,11 @@ export const useDesignerStore = create<DesignerStore>()((set) => ({
     setSelectedElement: (selectedElement) => set({ selectedElement }),
 
     setActiveElementId: (id) => set({ activeElementId: id }),
+
+    updateStyle: (style) =>
+        set((state) => ({
+            style: { ...state.style, ...style },
+        })),
 
     // Move Elements
     moveElementUp(id) {
