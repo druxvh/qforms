@@ -1,13 +1,13 @@
 import { arrayMove } from '@/lib/arrayMove';
 import { FormElementInstance } from '@/types/form';
-import { defaultFormStyle, FormStyle } from '@/types/form-style';
+// import { defaultFormStyle, FormStyle } from '@/types/form-style';
 import { create } from 'zustand';
 
 type DesignerState = {
     elements: FormElementInstance[];
     selectedElement: FormElementInstance | null;
     activeElementId: string | null;
-    style: FormStyle
+    // style: FormStyle
 };
 
 type DesignerActions = {
@@ -18,7 +18,7 @@ type DesignerActions = {
     setSelectedElement: (element: FormElementInstance | null) => void;
     setActiveElementId: (id: string | null) => void;
 
-    updateStyle: (style: Partial<FormStyle>) => void;
+    // updateStyle: (style: Partial<FormStyle>) => void;
 
     moveElementUp: (id: string) => void;
     moveElementDown: (id: string) => void;
@@ -33,7 +33,7 @@ export const useDesignerStore = create<DesignerStore>()((set) => ({
     elements: [],
     selectedElement: null,
     activeElementId: null,
-    style: defaultFormStyle,
+    // style: defaultFormStyle,
 
     // Actions
     setElements: (elements) => set({ elements }),
@@ -61,10 +61,10 @@ export const useDesignerStore = create<DesignerStore>()((set) => ({
 
     setActiveElementId: (id) => set({ activeElementId: id }),
 
-    updateStyle: (style) =>
-        set((state) => ({
-            style: { ...state.style, ...style },
-        })),
+    // updateStyle: (style) =>
+    //     set((state) => ({
+    //         style: { ...state.style, ...style },
+    //     })),
 
     // Move Elements
     moveElementUp(id) {
